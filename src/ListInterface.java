@@ -20,7 +20,7 @@
  *
  */
 
-public interface ListInterface<I extends Comparable<? super I>> {
+public interface ListInterface<I extends Comparable<I>> {
 	
 
 	/**
@@ -182,5 +182,6 @@ public interface ListInterface<I extends Comparable<? super I>> {
 	 * This method removes all Elements from the list, making the list empty.
 	 */
 	public void removeAll();
+
 	
 }
