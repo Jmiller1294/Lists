@@ -6,9 +6,9 @@ public class ArrayBasedList<I extends Comparable<I>> implements ListInterface<I>
 	public static void main(String[] args) {
 		ArrayBasedList<Integer> lis = new ArrayBasedList<Integer>();
 		lis.add(1);
-		lis.add(1);
-		lis.add(1);
-		System.out.println(lis.size());
+		System.out.println(lis.isEmpty());
+		lis.removeAll();
+		System.out.println(lis.isEmpty());
 	}
 	private int index = 0;
 	private I[] list;
@@ -34,11 +34,9 @@ public class ArrayBasedList<I extends Comparable<I>> implements ListInterface<I>
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return list.length == 0;
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void add(I element) {
@@ -94,8 +92,8 @@ public class ArrayBasedList<I extends Comparable<I>> implements ListInterface<I>
 
 	@Override
 	public void removeAll() {
-		// TODO Auto-generated method stub
-		
+		list = resize(list, 0);
+		index = 0;
 	}
 	
 	public static < E > void printArray(E[] elements) {  
