@@ -1,56 +1,81 @@
 
-public class LinkedList implements ListInterface{
-
-	@Override
-	public ListInterface copy() {
+public class LinkedList<I extends Comparable<I>> implements ListInterface<I>{
+	
+	LinkedListNode<I> head;
+	LinkedListNode<I> tail;
+	LinkedListNode<I> curr;
+	LinkedListNode<I> prev;
+	int length;
+	
+	public LinkedList() {
+		this.head = null;
+		this.tail = null;
+		this.curr = null;
+		this.prev = null;
+		this.length = 0;
+	}
+	
+	
+	public ListInterface<I> copy() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.length;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return head == null;
+	}
+	
+	@Override
+	public void add(I element) {
+		if(isEmpty()) {
+			head = new LinkedListNode<I>(element, null);
+			curr = head;
+			tail = head;
+			this.length++;
+		}
+		else {
+			prev = curr;
+			curr.setNext(new LinkedListNode<I>(element, null));
+			curr = prev.getNext();
+			tail = curr;
+			this.length++;
+		}
 	}
 
 	@Override
-	public void add(Comparable element) {
+	public void add(I element, int index) throws IndexOutOfBoundsException {
+		
+	}
+
+	@Override
+	public void addSorted(I element) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void add(Comparable element, int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		
+	public I get(int index) throws IndexOutOfBoundsException {
+		LinkedListNode<I> current = this.head;
+		for(int i = 0;i < index;i++) {
+			current = current.getNext();
+		}
+		return current.getElement();
 	}
 
 	@Override
-	public void addSorted(Comparable element) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Comparable get(int index) throws IndexOutOfBoundsException {
+	public I replace(I element, int index) throws IndexOutOfBoundsException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Comparable replace(Comparable element, int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Comparable remove(int index) throws IndexOutOfBoundsException {
+	public I remove(int index) throws IndexOutOfBoundsException {
 		// TODO Auto-generated method stub
 		return null;
 	}
