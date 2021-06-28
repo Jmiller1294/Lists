@@ -73,17 +73,28 @@ public class ArrayBasedList<I extends Comparable<I>> implements ListInterface<I>
 	public void addSorted(I element) {
 		if(isEmpty()) {
 			add(element);
+			
 		}
 		else {
-			
-			int i = 0;
-		    for(I a: this.list) {
-		    	if(element.compareTo(a) < 0) {
-		    		break;
-		    	}
-		     }
-		    add(element, i);
+			for(int i = 0;i < this.list.length;i++) {
+				if(element.compareTo(this.list[i]) >= 0) {
+					this.list[i] = element;
+					
+				}
+			}
 		}
+		
+		
+//		else {
+//			
+//			int i = 0;
+//		    for(I a: this.list) {
+//		    	if(element.compareTo(a) < 0) {
+//		    		break;
+//		    	}
+//		     }
+//		    add(element, i);
+//		}
 	}
 
 	@Override

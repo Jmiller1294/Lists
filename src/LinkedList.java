@@ -50,7 +50,11 @@ public class LinkedList<I extends Comparable<I>> implements ListInterface<I>{
 
 	@Override
 	public void add(I element, int index) throws IndexOutOfBoundsException {
-		
+		LinkedListNode<I> current = this.head;
+		for(int i = 0;i < index;i++) {
+			current = current.getNext();
+		}
+		current.setElement(element);
 	}
 
 	@Override
@@ -70,20 +74,52 @@ public class LinkedList<I extends Comparable<I>> implements ListInterface<I>{
 
 	@Override
 	public I replace(I element, int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedListNode<I> current = this.head;
+		I prev = get(index);
+		if(index == 0) {
+			current.setElement(element);
+			return prev;
+		}
+			for(int i = 0;i < index;i++) {
+				current = current.getNext();
+			}
+			current.setElement(element);
+			return prev;
 	}
 
 	@Override
 	public I remove(int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedListNode<I> foundNode = this.head;
+		LinkedListNode<I> previous = null;
+		LinkedListNode<I> afterNode = null;
+	
+		if(index == 0) {
+			previous = this.head;
+			this.head = this.head.getNext();
+			return previous.getElement();	
+		}
+		if(index == length - 1) {
+			previous = this.tail;
+			this.tail = this.prev;
+			this.curr = this.tail;
+			return previous.getElement();
+		}
+		for(int i = 0;i < index;i++) {
+			previous = foundNode;
+			foundNode = foundNode.getNext();
+			afterNode = foundNode.getNext();
+		}
+		
+		previous.setNext(afterNode);
+		this.length--;
+		return foundNode.getElement();
 	}
 
 	@Override
 	public void removeAll() {
-		// TODO Auto-generated method stub
-		
+		this.head = null;
+		this.tail = null;
+		this.length = 0;
 	}
 
 }
